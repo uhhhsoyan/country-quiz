@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import restcountries from '../api/restcountries';
-import styles from '../styles/styles.css';
+import QuizCard from './QuizCard';
 
 const App = () => {
     const [countryCodes, setCountryCodes] = useState([]);
@@ -17,7 +17,9 @@ const App = () => {
     }, [])
 
     return (
-        <div>{countryCodes}</div>
+        <div>
+            <QuizCard />
+        </div>
     )
 }
 
