@@ -4,8 +4,9 @@ import QuizCard from './QuizCard';
 
 const Quiz = () => {
     const [correctCounter, setCorrectCounter] = useState(0);
-    const [countryData, setCountryData] = useState([{flag: "https://restcountries.eu/data/afg.svg", name: "Afghanistan", capital: "Kabul"}]);
-    const [countryNames, setCountryNames] = useState([])
+    //const [countryData, setCountryData] = useState([{flag: "https://restcountries.eu/data/afg.svg", name: "Afghanistan", capital: "Kabul"}]);
+    const [countryData, setCountryData] = useState(null);
+    const [countryNames, setCountryNames] = useState([]);
     useEffect(() => {
         const search = async () => {
             const { data } = await restcountries.get('/all', {
@@ -13,15 +14,29 @@ const Quiz = () => {
                     fields: 'name;capital;flag'
                 }
             })
-            setCountryData(data)
-        };
+            setCountryData(data);
+            setCountryNames(shuffle(data.map(d => d.name)));
+        }
         search();
     }, [])
+
+    const shuffle = (array) => {
+        for (var i = array.length - 1; i > 0; i--) {
+            const swapIndex = Math.floor(Math.random() * (i + 1))
+            const currentEle = array[i]
+            const eleToSwap = array[swapIndex]
+            array[i] = eleToSwap
+            array[swapIndex] = currentEle
+        }
+        return array
+    }
+    //console.log(countryData)
+    //console.log(countryNames)
     return (
-        <QuizCard 
-            country={countryData[0]}
-            type='capital'
-        />
+        <div>
+            {countryData ? <QuizCard country={countryData[1]} type='capital' /> : null}
+            
+        </div>
     )
 }
 

@@ -8,7 +8,7 @@ const QuizCard = ({ country, type }) => {
     const prompt = (type) => {
         switch (type) {
             case 'capital':
-                return <p className="card-question">{country.capital} is the capital of</p>
+                return <p className="card-question">{country.capital || null} is the capital of</p>
             case 'flag':
                 return <p className="card-question">Which country does this flag belong to?</p>
             default:
@@ -50,7 +50,7 @@ const QuizCard = ({ country, type }) => {
                 showAnswers={showAnswers}
                 correct={false}       
             />
-            {showAnswers ? <a href="#" className="card-btn-next" onClick={() => {}}>Next</a> : null}
+            {showAnswers ? <a href="#" className="card-btn-next" onClick={() => console.log(country)}>Next</a> : null}
         </div>
     )
 }
