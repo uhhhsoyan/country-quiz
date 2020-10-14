@@ -85,3 +85,41 @@ html {
     margin-top: 15px;
     margin-left: 46px;    
 }
+
+.card-answer-correct {
+    display: inline-block;
+    color: #fff;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    text-decoration: none;
+    height: 56px;
+    width: 400px;
+    margin: 0px 32px 25px;
+    background-color: #60BF88;
+}
+
+.card-answer-incorrect {
+    display: inline-block;
+    color: #fff;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    text-decoration: none;
+    height: 56px;
+    width: 400px;
+    margin: 0px 32px 25px;
+    background-color: #ea8282;
+}
+
+.card-btn-next {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: #F9A826;
+    height: 56px;
+    width: 116px;
+    text-decoration: none;
+    border-radius: 12px;
+    margin-left: auto;
+    margin-right: 32px;
+}
