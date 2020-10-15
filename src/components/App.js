@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import restcountries from '../api/restcountries';
 import Quiz from './Quiz';
 
 const App = () => {
     return (
         <div>
-            <Quiz/>
+            <Quiz questionCount={10} questionTypes={['flag', 'capital']} />
         </div>
     )
 }

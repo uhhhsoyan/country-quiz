@@ -1,56 +1,72 @@
 import React, { useState } from 'react';
 import QuizButton from './QuizButton';
 
-const QuizCard = ({ country, type }) => {
+const QuizCard = ({ question, nextQuestion }) => {
+    //const { qType, qTerm, correct, answerBank } = question;
     const [showAnswers, setShowAnswers] = useState(false);
-    const [correctAns, setCorrectAns] = useState('');
-    //const [options, setOptions] = useState('');
-    const prompt = (type) => {
-        switch (type) {
+    const [AnsweredCorrect, setAnsweredCorrect] = useState(null);
+    const prompt = () => {
+        switch (question.qType) {
             case 'capital':
-                return <p className="card-question">{country.capital || null} is the capital of</p>
+                return <p className="card-question">{question.qTerm || null} is the capital of</p>
             case 'flag':
-                return <p className="card-question">Which country does this flag belong to?</p>
+                return (
+                    <div className="card-question-flag">
+                        <img src={question.qTerm} className="card-flag-img" alt="country flag"/>
+                        <p>Which country does this flag belong to?</p>
+                    </div>
+                )
             default:
                 return ''
         }
     }
-    
+
+    const checkAns = (correct) => {
+        setShowAnswers(true);
+        setAnsweredCorrect(correct);
+
+    }
+
+    const submitAns = () => {
+        //setShowAnswers(false);
+        nextQuestion(AnsweredCorrect)
+    }
+
     return (
         <div className="card-container">
             <p className="card-title">COUNTRY QUIZ</p>
-            <a href="#" className="card-img"></a>
-            {prompt.type === 'flag' ? <img src={country.flag} width="100" height="100" /> : null}
-            {prompt(type)}
+            <span className="card-img" />
+            
+            {prompt(question.qType)}
             <QuizButton
                 option="A"
-                value="Vietnam"
-                onClick={() => setShowAnswers(true)}
-                showAnswers={showAnswers}
-                correct={false}     
+                value={question.answerBank[0]}
+                correct={question.answerBank[0] === question.correct}
+                onClick={checkAns}
+                showAnswers={showAnswers}  
             />
             <QuizButton
                 option="B"
-                value="Malaysia"
-                onClick={() => setShowAnswers(true)}
+                value={question.answerBank[1]}
+                onClick={checkAns}
                 showAnswers={showAnswers}
-                correct={true}           
+                correct={question.answerBank[1] === question.correct}
             />
             <QuizButton
                 option="C"
-                value="Sweden"
-                onClick={() => setShowAnswers(true)}
+                value={question.answerBank[2]}
+                onClick={checkAns}
                 showAnswers={showAnswers}
-                correct={false}           
+                correct={question.answerBank[2] === question.correct}
             />
             <QuizButton
                 option="D"
-                value="Austria"
-                onClick={() => setShowAnswers(true)}
+                value={question.answerBank[3]}
+                onClick={checkAns}
                 showAnswers={showAnswers}
-                correct={false}       
+                correct={question.answerBank[3] === question.correct}
             />
-            {showAnswers ? <a href="#" className="card-btn-next" onClick={() => console.log(country)}>Next</a> : null}
+            {showAnswers ? <a href="#" className="card-btn-next" onClick={() => submitAns()}>Next</a> : null}
         </div>
     )
 }

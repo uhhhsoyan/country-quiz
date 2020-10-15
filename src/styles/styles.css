@@ -17,10 +17,12 @@ html {
     text-rendering: optimizeLegibility;
 }
 
+/* ---------- Quiz Card Container ---------- */
+
 .card-container {
     background-color: #fff;
     border-radius: 24px;
-    height: 515px;
+    height: 559px;
     width: 464px;
     position: absolute;
     left: 50%;
@@ -47,12 +49,35 @@ html {
     background-size: 160px 160px;
 }
 
+/* ---------- Quiz Card Question ---------- */
+
 .card-question {
+    display: inline-block;
     font-weight: 700;
     font-size: 133%;
     color: #2F527B;
     margin: 68px 32px 25px 32px;
 }
+.card-question-flag {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 133%;
+    color: #2F527B;
+    margin: 68px 32px 25px 32px;
+}
+
+.card-flag-img {
+    display: inline-block;
+    margin-right: 20px;
+    width: 84px;
+    height: 54px;
+
+    filter: drop-shadow(0px 4px 24px rgba(0, 0, 0, 0.1));
+    border-radius: 4px;
+}   
+
+/* ---------- Quiz Card Buttons ---------- */
 
 .card-answer {
     display: inline-block;
@@ -64,6 +89,7 @@ html {
     width: 400px;
     margin: 0px 32px 25px;
     transition: background-color 0.2s, border 0.2s, color 0.2s;
+    white-space: nowrap
 }
 
 .card-answer:hover {
@@ -97,6 +123,17 @@ html {
     margin: 0px 32px 25px;
     background-color: #60BF88;
 }
+.card-answer-correct i {
+    position: absolute;
+    background-image: url('../assets/check.svg');
+    right: 18px;
+    margin-right: 32px;
+    margin-left: auto;
+    margin-top: 18px;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+}
 
 .card-answer-incorrect {
     display: inline-block;
@@ -108,6 +145,18 @@ html {
     width: 400px;
     margin: 0px 32px 25px;
     background-color: #ea8282;
+}
+
+.card-answer-incorrect i {
+    position: absolute;
+    background-image: url('../assets/cancel.svg');
+    right: 18px;
+    margin-right: 32px;
+    margin-left: auto;
+    margin-top: 18px;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
 }
 
 .card-btn-next {
@@ -122,4 +171,5 @@ html {
     border-radius: 12px;
     margin-left: auto;
     margin-right: 32px;
+    margin-bottom: 32px;
 }
