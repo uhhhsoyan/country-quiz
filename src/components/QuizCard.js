@@ -5,6 +5,7 @@ const QuizCard = ({ question, nextQuestion }) => {
     //const { qType, qTerm, correct, answerBank } = question;
     const [showAnswers, setShowAnswers] = useState(false);
     const [AnsweredCorrect, setAnsweredCorrect] = useState(null);
+    const [hide, setHide] = useState(false);
     const prompt = () => {
         switch (question.qType) {
             case 'capital':
@@ -28,12 +29,13 @@ const QuizCard = ({ question, nextQuestion }) => {
     }
 
     const submitAns = () => {
-        //setShowAnswers(false);
+        setHide(true);
+        setShowAnswers(false);
         nextQuestion(AnsweredCorrect)
     }
 
     return (
-        <div className="card-container">
+        <div className="card-container" style={ hide ? { display: 'none' } : { display: '' }}>
             <p className="card-title">COUNTRY QUIZ</p>
             <span className="card-img" />
             
@@ -48,23 +50,23 @@ const QuizCard = ({ question, nextQuestion }) => {
             <QuizButton
                 option="B"
                 value={question.answerBank[1]}
+                correct={question.answerBank[1] === question.correct}
                 onClick={checkAns}
                 showAnswers={showAnswers}
-                correct={question.answerBank[1] === question.correct}
             />
             <QuizButton
                 option="C"
                 value={question.answerBank[2]}
+                correct={question.answerBank[2] === question.correct}
                 onClick={checkAns}
                 showAnswers={showAnswers}
-                correct={question.answerBank[2] === question.correct}
             />
             <QuizButton
                 option="D"
                 value={question.answerBank[3]}
+                correct={question.answerBank[3] === question.correct}
                 onClick={checkAns}
                 showAnswers={showAnswers}
-                correct={question.answerBank[3] === question.correct}
             />
             {showAnswers ? <a href="#" className="card-btn-next" onClick={() => submitAns()}>Next</a> : null}
         </div>
