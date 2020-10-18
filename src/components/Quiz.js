@@ -52,6 +52,7 @@ const Quiz = ({ questionCount, questionTypes }) => {
     const renderCards = () => {
         return (
             <div className="render-cards">
+                <h1 style={{ position: 'absolute', color: '#fff' }}>{`Currect counter: ${correctCounter}`}</h1>
                 {questions.map(q => <QuizCard question={q} nextQuestion={nextQuestion} />)}
             </div>
         )

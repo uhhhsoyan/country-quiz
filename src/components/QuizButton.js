@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
 
-const QuizButton = ({ option, value, onClick, showAnswers, correct }) => {
+const QuizButton = ({ option, value, correctAnswer, onClick, showAnswers }) => {
     const [btnStyle, setBtnStyle] = useState("card-answer")
     
     useEffect(() => {
-        if (showAnswers && correct) {setBtnStyle("card-answer-correct")}
+        if (showAnswers && correctAnswer) {setBtnStyle("card-answer-correct")}
         if (!showAnswers) {setBtnStyle("card-answer")}
     }, [showAnswers])
 
     const processClick = () => {
-        if (correct) {
+        if (correctAnswer) {
             setBtnStyle("card-answer-correct")
-            onClick()
+            onClick(true)
         } else {
             setBtnStyle("card-answer-incorrect")
-            onClick()
+            onClick(false)
         } 
     }
     

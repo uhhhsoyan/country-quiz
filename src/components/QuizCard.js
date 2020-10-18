@@ -4,7 +4,7 @@ import QuizButton from './QuizButton';
 const QuizCard = ({ question, nextQuestion }) => {
     //const { qType, qTerm, correct, answerBank } = question;
     const [showAnswers, setShowAnswers] = useState(false);
-    const [AnsweredCorrect, setAnsweredCorrect] = useState(null);
+    const [answeredCorrect, setAnsweredCorrect] = useState(null);
     const [hide, setHide] = useState(false);
     const prompt = () => {
         switch (question.qType) {
@@ -30,8 +30,8 @@ const QuizCard = ({ question, nextQuestion }) => {
 
     const submitAns = () => {
         setHide(true);
-        setShowAnswers(false);
-        nextQuestion(AnsweredCorrect)
+        //setShowAnswers(false);
+        nextQuestion(answeredCorrect)
     }
 
     return (
@@ -43,28 +43,28 @@ const QuizCard = ({ question, nextQuestion }) => {
             <QuizButton
                 option="A"
                 value={question.answerBank[0]}
-                correct={question.answerBank[0] === question.correct}
+                correctAnswer={question.answerBank[0] === question.correct}
                 onClick={checkAns}
                 showAnswers={showAnswers}  
             />
             <QuizButton
                 option="B"
                 value={question.answerBank[1]}
-                correct={question.answerBank[1] === question.correct}
+                correctAnswer={question.answerBank[1] === question.correct}
                 onClick={checkAns}
                 showAnswers={showAnswers}
             />
             <QuizButton
                 option="C"
                 value={question.answerBank[2]}
-                correct={question.answerBank[2] === question.correct}
+                correctAnswer={question.answerBank[2] === question.correct}
                 onClick={checkAns}
                 showAnswers={showAnswers}
             />
             <QuizButton
                 option="D"
                 value={question.answerBank[3]}
-                correct={question.answerBank[3] === question.correct}
+                correctAnswer={question.answerBank[3] === question.correct}
                 onClick={checkAns}
                 showAnswers={showAnswers}
             />
