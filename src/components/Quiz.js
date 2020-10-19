@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import restcountries from '../api/restcountries';
 import QuizCard from './QuizCard';
+import ResultsCard from './ResultsCard';
 
 const Quiz = ({ questionCount, questionTypes }) => {
     const [correctCounter, setCorrectCounter] = useState(0);
-    //const [questionIdx, setQuestionIdx] = useState(0);
+    const [answeredCounter, setAnsweredCounter] = useState(0);
     const [questions, setQuestions] = useState(null);
+    const [retry, setRetry] = useState(false);
 
-    // Fetch data, initialize subject countries and word bank
     useEffect(() => {
         const search = async () => {
             const { data } = await restcountries.get('/all', {
@@ -43,30 +44,33 @@ const Quiz = ({ questionCount, questionTypes }) => {
     }
 
     const nextQuestion = (correct) => {
+        setAnsweredCounter(answeredCounter + 1);
         if (correct) {
-            console.log('It was correct!')
-            setCorrectCounter(correctCounter + 1)
+            setCorrectCounter(correctCounter + 1);
         } 
+    }
+
+    const tryAgain = () => {
+        setAnsweredCounter(0);
+        setCorrectCounter(0);
+        setRetry(true);
     }
 
     const renderCards = () => {
         return (
             <div className="render-cards">
-                <h1 style={{ position: 'absolute', color: '#fff' }}>{`Currect counter: ${correctCounter}`}</h1>
+                {answeredCounter === questionCount ? <ResultsCard results={correctCounter} tryAgain={tryAgain} /> : null}
                 {questions.map(q => <QuizCard question={q} nextQuestion={nextQuestion} />)}
             </div>
         )
     }
     
-    console.log(questions)
-    
     return (
         <div>
             {questions ? renderCards() : null}
+            {retry === true ? renderCards() : null}
         </div>
     )
 }
-
-
 
 export default Quiz;
