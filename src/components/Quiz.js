@@ -31,6 +31,10 @@ const Quiz = ({ questionCount, questionTypes }) => {
         search();
     }, []);
 
+    useEffect(() => {
+
+    }, [retry])
+
 
     const shuffle = (array) => {
         for (var i = array.length - 1; i > 0; i--) {
@@ -51,9 +55,8 @@ const Quiz = ({ questionCount, questionTypes }) => {
     }
 
     const tryAgain = () => {
-        setAnsweredCounter(0);
-        setCorrectCounter(0);
-        setRetry(true);
+        //setAnsweredCounter(0);
+        //setCorrectCounter(0);
     }
 
     const renderCards = () => {

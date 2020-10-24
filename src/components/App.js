@@ -5,7 +5,7 @@ const App = () => {
     
     return (
         <div>
-            <Quiz questionCount={2} questionTypes={['flag', 'capital']} />
+            <Quiz questionCount={10} questionTypes={['flag', 'capital']} />
         </div>
     )
 }
